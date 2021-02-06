@@ -1,3 +1,12 @@
+// Структура БД
+// БД - users
+// таблица - users
+// поля:
+// ID - int, autoincrement, notnull, primary key
+// LOGIN - varchar(20), notnull
+// PASSWORD - varchar(20), notnull
+// NICK - varchar(20), notnull
+
 package Server;
 
 import java.sql.*;
