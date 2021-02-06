@@ -3,10 +3,13 @@ package Server;
 import java.sql.*;
 
 public class DBAccess {
-    private final String url = "jdbc:sqlite:src/main/resources/users.db";
-    private final String auth = "SELECT NICK FROM USERS WHERE LOGIN=? AND PASSWORD=?";
-    private final String isNickBusy = "SELECT * FROM USERS WHERE NICK=?";
-    private final String changeNick = "UPDATE USERS SET NICK=? WHERE NICK=?";
+    //private final String url = "jdbc:sqlite:src/main/resources/users.db";
+    private final String url = "jdbc:mysql://localhost:3306/users";
+    private final String login = "mysqluser";
+    private final String password = "paracels";
+    private final String auth = "SELECT NICK FROM users WHERE LOGIN=? AND PASSWORD=?";
+    private final String isNickBusy = "SELECT * FROM users WHERE NICK=?";
+    private final String changeNick = "UPDATE users SET NICK=? WHERE NICK=?";
     private Connection connection = null;
     private String error = "";
 
@@ -16,8 +19,10 @@ public class DBAccess {
 
     public void connect() {
         try {
-            connection = DriverManager.getConnection(url);
-            System.out.println("Connection to SQLite has been established.");
+            //connection = DriverManager.getConnection(url); // for SQLite
+            connection = DriverManager.getConnection(url, login, password); // for MySQL
+            //System.out.println("Connection to SQLite has been established.");
+            System.out.println("Connection to MySql has been established.");
         }catch (SQLException e) {
             e.printStackTrace();
         }
